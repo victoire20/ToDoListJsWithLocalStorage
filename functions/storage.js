@@ -95,7 +95,7 @@ export function updateTodo(id, content) {
 /**
  * 
  * @param {number} id 
- * @returns 
+ * @returns {<Todo[]>} 
  */
 export function changeStatus(id) {
     const data = JSON.parse(localStorage.getItem('todos'))

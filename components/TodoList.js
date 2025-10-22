@@ -6,7 +6,7 @@
  */
 
 import { changeStatus, createTodo, deleteTodo, fetchTodoList, filterTodoByStatus, getTodoWithId, updateTodo } from "../functions/storage.js"
-import { createElement, filterTodoItems, setActiveFilterButton, toggleAddUpdateButtons } from "../functions/dom.js"
+import { createElement, filterTodoItems, setActiveFilterButton, showCounterOfTodos, toggleAddUpdateButtons } from "../functions/dom.js"
 
 
 export class TodoList {
@@ -37,7 +37,7 @@ export class TodoList {
             <button class="btn btn-warning" id="btnUpdate" type="submit"><i class="bi bi-arrow-repeat"></i> Mettre à jour</button>
         </form>
         <main>
-            <div>                
+            <div>            
                 <div class="btn-group mb-4">
                     <button class="btn btn-primary" data-filter="all"><i class="bi bi-list-ul"></i> Toutes</button>
                     <button class="btn" data-filter="todo"><i class="bi bi-hourglass-split"></i> A faire</button>
@@ -45,6 +45,7 @@ export class TodoList {
                 </div>
                 <button class="btn btn-danger mb-4" id="resetPage"><i class="bi bi-arrow-repeat"></i> Rafraichir la page</button>
             </div>
+            <div class="mb-1"><strong class="nbrTodos">0</strong> tâches trouvée (s)</div>  
             <div class="list-items">
                 <div class="empty"> Aucune tâche enregistré </div>
             </div>
@@ -55,6 +56,7 @@ export class TodoList {
             this.#listElement.append(t.element)
             // this.#listElement.prepend(t.element)
         }
+        showCounterOfTodos(this.#todos.length)
 
         document.querySelector('form').addEventListener('submit', e => this.#onSubmit(e))
         document.querySelector('#resetPage').addEventListener('click', this.#resetPage)
@@ -83,6 +85,7 @@ export class TodoList {
      * @param {string} title
      */
     #addTodo (title) {
+        const allItems = document.querySelectorAll('.items')
         createTodo(title)
             .then(resp => {
                 const filter = document.querySelector('.btn-group .btn-primary').getAttribute('data-filter')
@@ -93,6 +96,10 @@ export class TodoList {
             })
             .catch(err => {
                 alert(err)
+            })
+            .finally(() => {
+                const allItems = document.querySelectorAll('.items')
+                showCounterOfTodos(allItems.length)
             })
     }
 
@@ -208,6 +215,8 @@ class TodoListItem {
     #remove (element) {
         const id = element.parentElement.querySelector('input').id
         deleteTodo(id)
+        const allItems = document.querySelectorAll('.items')
+        showCounterOfTodos(allItems.length - 1)
         element.parentElement.remove()
     }
 
@@ -215,7 +224,7 @@ class TodoListItem {
      * @param {HTMLElement} checkbox 
      */
     #toggle (checkbox) {
-        changeStatus(checkbox.id)        
+        changeStatus(checkbox.id)   
         if (checkbox.checked) {
             this.#element.classList.add('is-completed')
             this.#element.classList.add('items-close')
@@ -228,5 +237,12 @@ class TodoListItem {
         const filter = document.querySelector('.btn-group .btn-primary').getAttribute('data-filter')
         filterTodoItems(allItems, filter)
 
+        let nbrTodos = 0
+        document.querySelectorAll('.items').forEach(item => {
+            if (!item.classList.contains('hide')) {
+                nbrTodos++
+            }
+        })
+        showCounterOfTodos(nbrTodos)
     }
 } 
