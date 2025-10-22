@@ -26,6 +26,13 @@ input[type='checkbox'] {
     padding-bottom: 4vw;
 }
 
+.container h1 {
+    text-align: center;
+    margin-bottom: 2vw;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
 form.d-flex {
     display: block;
 }
@@ -52,10 +59,6 @@ form.d-flex button {
 form.d-flex button:last-child {
     display: none;
 }
-
-/* .container form .form-control:focus {
-    border: 1px solid rgba(255, 0, 0, .2);
-} */
 
 .btn {
     padding: 8px 6px;
@@ -132,6 +135,7 @@ main > div:first-child {
     border: 1px solid rgba(0, 0, 0, .1);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     letter-spacing: 1px;
+    display: none;
 }
 
 .list-items {
@@ -168,6 +172,29 @@ main > div:first-child {
     color: rgba(255, 255, 255);
 }
 
+.items.hide { display: none; }
+.empty { display: none; }
+
+.list-items:has(.items:not(.hide)) .empty {
+  display: none; /* si au moins un item visible, cacher .empty */
+}
+
+.list-items:not(:has(.items:not(.hide))) .empty {
+  display: block; /* sinon afficher .empty */
+}
+
+.alert {
+    margin: 1vw 6vw;
+    padding: 10px 8px;
+}
+
+.alert-danger {
+    background: rgba(255, 0, 0, .33);
+    color: rgba(255, 0, 0, 1);
+    font-weight: bold;
+    font-size: .8rem;
+}
+
 @media screen and (width >= 700px) {
     .container {
         margin: 0 8vw;
@@ -175,6 +202,14 @@ main > div:first-child {
 
     .pt-5 {
         padding-top: 5vw;
+    }
+
+    .alert-danger {
+        font-size: 1.3rem;
+    }
+
+    .container h1 {
+        font-size: 2rem;
     }
 
     form.d-flex {

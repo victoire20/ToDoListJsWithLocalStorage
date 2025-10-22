@@ -1,7 +1,36 @@
 # 📝 ToDoListJsWithLocalStorage
 
+![GitHub last commit](https://img.shields.io/github/last-commit/victoire20/ToDoListJsWithLocalStorage?style=for-the-badge)
+![GitHub top language](https://img.shields.io/github/languages/top/victoire20/ToDoListJsWithLocalStorage?style=for-the-badge)
+![License](https://img.shields.io/github/license/victoire20/ToDoListJsWithLocalStorage?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/victoire20/ToDoListJsWithLocalStorage?style=for-the-badge)
+
 Une application **To-Do List** développée en **JavaScript pur (Vanilla JS)**, qui permet de **créer, modifier, filtrer et supprimer des tâches**.  
 Toutes les données sont **stockées localement** dans le **Local Storage du navigateur**, sans besoin de base de données ni de serveur backend.
+
+---
+
+## 📁 Structure du projet
+
+├── components/
+
+│   └── TodoList.js      # Composant principal de la Todo List
+
+│
+
+├── functions/
+
+│   ├── storage.js           # Fonctions utilitaires pour manipulé les données enregistré dans le localStorage
+
+│   └── dom.js           # Fonction utilitaire pour créer ou manipuler des éléments DOM
+
+│
+
+├── app.js               # Point d'entrée principal
+
+├── index.html           # Page HTML principale
+
+└── style.css            # Styles CSS de base
 
 ---
 
@@ -25,37 +54,6 @@ Toutes les données sont **stockées localement** dans le **Local Storage du nav
 - **CSS3 / Bootstrap Icons** – mise en forme et icônes  
 - **JavaScript (ES6)** – logique de gestion des tâches  
 - **Local Storage API** – persistance locale des données  
-
----
-
-## 🧠 Structure du code
-
-Le fichier principal est `app.js`.  
-Voici les principales fonctions :
-
-### 🔹 `createHTMLElement(tagName, classnames)`
-Crée dynamiquement un élément HTML avec les classes spécifiées.
-
-### 🔹 `createListItemHTMLElement(data)`
-Affiche la liste des tâches dans le DOM.
-
-### 🔹 `createOrGetLocalStorageData(payload?)`
-Crée ou récupère la liste des tâches depuis le **Local Storage**.
-
-### 🔹 `createNewTodo(e)`
-Ajoute une nouvelle tâche à la liste.
-
-### 🔹 `updateTodo(data, payload)`
-Met à jour une tâche existante (contenu ou état).
-
-### 🔹 `filterTodoListByStatus(status)`
-Filtre les tâches selon leur statut (`terminer = true / false`).
-
-### 🔹 `handleFilterButtons(currentTarget)`
-Met à jour la mise en surbrillance du bouton de filtre actif.
-
-### 🔹 `fetchAllTodo(data?)`
-Recharge l’affichage des tâches.
 
 ---
 
