@@ -63,3 +63,11 @@ export function toggleAddUpdateButtons(showAdd=true) {
         btnUpdate.style.display = 'block'
     }
 }
+
+/**
+ * Afficher le nombre de Todo de la liste en fonction des filtres
+ * @param {number} nbr 
+ */
+export function showCounterOfTodos(nbr) {
+    document.querySelector('.nbrTodos').innerText = nbr
+}

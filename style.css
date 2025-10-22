@@ -115,6 +115,10 @@ form.d-flex .btn {
     border-radius: 0 3px 3px 0;
 }
 
+.mb-1 {
+    margin-bottom: 1vw;
+}
+
 .mb-4 {
     margin-bottom: 4vw;
 }
@@ -122,6 +126,10 @@ form.d-flex .btn {
 main > div:first-child {
     display: flex;
     justify-content: space-between;
+}
+
+main > div:nth-child(2) {
+    text-align: end;
 }
 
 .empty {
