@@ -54,7 +54,6 @@ export class TodoList {
         for (let todo of this.#todos) {
             const t = new TodoListItem(todo)
             this.#listElement.append(t.element)
-            // this.#listElement.prepend(t.element)
         }
         showCounterOfTodos(this.#todos.length)
 
@@ -74,6 +73,12 @@ export class TodoList {
             this.#updateTodo(id, title)
             e.currentTarget.reset()
         } else if (title) {
+            if (this.#todos.length === 100) {
+                const divError = createElement('div', {class: 'alert alert-danger'})
+                divError.innerText = 'La limite de donnée à été atteinte!'
+                document.querySelector('#todolist').prepend(divError)
+                return
+            }
             this.#addTodo(title)
             e.currentTarget.reset()
         }else {
